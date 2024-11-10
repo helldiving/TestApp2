@@ -23,9 +23,9 @@ public class TestingVC
 
         - Value type vs reference type: C# has both (struct vs class) while Java mostly has reference
         - Nullable types: adding ? makes types nullable and compiler forces null checks at compile time (ex: int? nullableNumber = null; string? nullableString = null;)
-        - Default values can be assigned directly to properties or in constructor (in Java it's only to primitive fields, 0 for int, false for boolean, null for obj reference)
+        - Default values can be assigned directly to properties or in constructor (in Java it's only to primitive fields: 0 for int, false for boolean, null for obj reference)
         - C# can infer types, ex: var name = "Saul Goodman"; var age = 42; var prices = new List<decimal>();
-        - Delegates & events: C#'s type-safe approach to callbacks/event handling
+        - Delegates & events: C#'s type-safe approach to callbacks/event handling (ex: public delegate void MessageHandler(string message);) (ex: public event MessageHandler OnMessageReceived;)
 
        Interface:
 
@@ -58,6 +58,28 @@ public class TestingVC
                         await Task.Delay(1000); // simulates waiting for data
                         return "Data fetched";
                     }
+
+       Metaprogramming:
+
+        - Expression<T>: represents code as data that can be analyzed and modified at runtime (ex: Expression<Func<int, bool>> isEven = x => x % 2 == 0; creates a tree structure which can be inspected, modified, or converted)
+            - Useful for converting C# code to SQL, building dynamic queries, and creating code analyzers
+        - Reflectable Attributes: metadata tags that can be examined at runtime (ex: [Obsolete("Don't use this")] inspectable via reflection)
+            - Allows you to add metadata to the code, check permissions at runtime, build frameworks that can scan code for special markers, and create documentation automatically
+        - Non-elided Generics: preserves generic type information at runtime (unlike Java's type erasure) (ex: Type listType = numbers.GetType(); Console.WriteLine(listType.GetGenericArguments()[0]); // Prints "System.Int32" (int's full type name in C#))
+            - Allows runtime type checking and dynamic instance creation of generic types
+        - Roslyn Extensions: compiler platform enabling custom analyzers and code transformations (can add custom compile-time checks and code fixes)
+            - Allows you to create custom compile warnings/errors, auto-fix code issues, enforce coding standards, and generate code during compilation
+        - Source Generators: compile-time code generation feature (can auto-generate boilerplate code or create code from external data)
+            - Allows you to avoid writing repetitive code and create code based on external data such as JSON, a database schema, etc.)
+
+       Type Aliases:
+
+        - int: System.Int32
+        - long: System.Int64
+        - double: System.Double
+        - string: System.String
+        - bool: System.Boolean
+        - object: System.Object
 
         */
 
